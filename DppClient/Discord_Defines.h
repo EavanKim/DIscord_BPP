@@ -1,6 +1,9 @@
 #ifndef DISCORD_DEFINES_HPP__
 #define DISOCRD_DEFINES_HPP__
 
+#include <vector>
+#include <unordered_map>
+
 #include <windows.h>
 #include <WinSock2.h>
 #include <ws2tcpip.h>
@@ -11,7 +14,7 @@
 #pragma comment (lib, "AdvApi32.lib")
 
 #include "Discord_Work.h"
-#include "Discord_Socket.h"
-#include "Discord_Win_Socket.h"
+#include "Discord_Task.h"
+#include "Discord_Bot_Server.h"
 
 #endif

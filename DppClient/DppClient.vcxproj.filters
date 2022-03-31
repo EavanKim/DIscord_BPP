@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Work">
+      <UniqueIdentifier>{c38edc27-84bf-48cf-b8ec-b60b01e6f1f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Work">
+      <UniqueIdentifier>{2150250b-f931-47b9-a3a0-f148c2923b48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Task">
+      <UniqueIdentifier>{b394bca4-c3db-4f80-948b-c10e54ad1cb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Task">
+      <UniqueIdentifier>{d6a4c08c-3ea8-4dba-81c3-05abc0db6b08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -33,13 +45,13 @@
     <ClInclude Include="Discord_Defines.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Discord_Socket.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Discord_Win_Socket.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Discord_Work.h">
+      <Filter>헤더 파일\Work</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord_Task.h">
+      <Filter>헤더 파일\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord_Bot_Server.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,10 +62,13 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Discord_Win_Socket.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Discord_Work.cpp">
+      <Filter>소스 파일\Work</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord_Task.cpp">
+      <Filter>소스 파일\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord_Bot_Server.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

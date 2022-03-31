@@ -2,48 +2,33 @@
 
 namespace Discord
 {
-    Discord_Win_Socket::Discord_Win_Socket()
-    {
-        setParam(this);
-        setFunction(Discord_Win_Socket::wait);
-    }
+	Discord_Win_Socket::Discord_Win_Socket()
+		: DSocket()
+	{
+	}
 
-    Discord_Win_Socket::~Discord_Win_Socket()
-    {
-        stop();
-    }
+	Discord_Win_Socket::~Discord_Win_Socket()
+	{
+	}
 
-    void Discord_Win_Socket::connect()
-    {
-        start();
-    }
+	void Discord_Win_Socket::connect()
+	{
+	}
 
-    void Discord_Win_Socket::disconnect()
-    {
-        stop();
-    }
+	void Discord_Win_Socket::disconnect()
+	{
+	}
 
-    UINT Discord_Win_Socket::wait(void* _lpParam)
-    {
-        if (nullptr != _lpParam)
-        {
-            Discord_Win_Socket* SocketPtr = static_cast<Discord_Win_Socket*>(_lpParam);
+	void Discord_Win_Socket::read()
+	{
+	}
 
-            SocketPtr->read();
-            SocketPtr->write();
-        }
-    }
+	void Discord_Win_Socket::write()
+	{
+	}
 
-    void Discord_Win_Socket::read()
-    {
-    }
-
-    void Discord_Win_Socket::write()
-    {
-    }
-
-    bool Discord_Win_Socket::isConnected()
-    {
-        return false;
-    }
+	bool Discord_Win_Socket::isConnected()
+	{
+		return false;
+	}
 }
