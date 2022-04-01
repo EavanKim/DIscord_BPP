@@ -51,9 +51,6 @@
     <ClCompile Include="Discord\Server\Discord_Socket.cpp">
       <Filter>소스 파일\Discord\Server</Filter>
     </ClCompile>
-    <ClCompile Include="Discord\Server\Discord_Win_Socket.cpp">
-      <Filter>소스 파일\Discord\Server</Filter>
-    </ClCompile>
     <ClCompile Include="Discord\Thread\Discord_Task.cpp">
       <Filter>소스 파일\Discord\Thread</Filter>
     </ClCompile>
