@@ -7,5 +7,6 @@
 #### 프로젝트 빌드 및 테스트가 수행되는 환경  
 CPU : AMD  
 RAM : 64GB  
+OS : Windows  
 IDE : Visual Studio 2022  
 Language : C++  
