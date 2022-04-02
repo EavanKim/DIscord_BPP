@@ -1,13 +1,26 @@
 #ifndef	DISCORD_MANAGEMENT_HPP__
 #define DISCORD_MANAGEMENT_HPP__
+/*
+* ============================================================================================================
+* Discord_Management
+* 
+* 작업자 : EavanKim
+* 
+* 용도 :
+*	프로그램이 실행중인 시스템에서 프로그램에 명령을 내리거나 상태를 확인하기 위한 내용을 관리하는 객체
+* 
+* 주의사항 :
+*	Thread-Safe가 유지되어야 함.
+* 
+* 생명주기 :
+*	1. 생성은 Program 종속적
+*	2. 삭제는 명령과 Program 종속적(예외 발생으로 프로그램 종료가 필요한 경우 명령이 없더라도 삭제)
+* 
+* ============================================================================================================
+*/
 
 namespace Discord
 {
-	//Session별 Thread에서 Management로 상태값을 알려주거나,
-	//Management에서 Session별 Thread로 전파해야 할 수 있으므로
-	//Management의 모든 내용은 Thread-Safe해야함.
-	//생성 삭제의 경우, Thread 분기 전을 기준으로 생성
-	//삭제된 경우 모든 유관 Thread에서 Program이 종료되었다고 인지하고 모든 Thread가 종료되어야 함.
 	class DManagement
 	{
 	public:
