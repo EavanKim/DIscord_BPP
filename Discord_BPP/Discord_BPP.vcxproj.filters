@@ -31,6 +31,30 @@
     <Filter Include="소스 파일\Discord\Server">
       <UniqueIdentifier>{42223366-fde3-4a37-9c0a-b5050a8b3a2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Discord\Bot">
+      <UniqueIdentifier>{22607451-cdbb-4b07-893d-d6292825418a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Discord\Bot">
+      <UniqueIdentifier>{80d96376-c9ab-4b6c-b32a-1fe2a3caf9b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Discord\Bot\Command">
+      <UniqueIdentifier>{37ce9436-37fd-4505-9fa4-eaf2e45537bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Discord\Bot\Command">
+      <UniqueIdentifier>{8c2accdf-637a-49d5-a987-6b7f91e543bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Discord\Management">
+      <UniqueIdentifier>{ca696987-90dd-4e2b-9109-4e831679d067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Discord\Management\Command">
+      <UniqueIdentifier>{7ed570a2-6515-4363-bc01-d008e4aecbec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Discord\Management">
+      <UniqueIdentifier>{8219a3b9-e67a-4842-bce0-7c43743b29dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Discord\Management\Command">
+      <UniqueIdentifier>{a48d9510-4dac-4714-8dfc-ff6b54f86b32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Discord_BPP.cpp">
@@ -56,6 +80,12 @@
     </ClCompile>
     <ClCompile Include="Discord\Thread\Discord_Work.cpp">
       <Filter>소스 파일\Discord\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord_Session.cpp">
+      <Filter>소스 파일\Discord\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord_Management.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +115,12 @@
     </ClInclude>
     <ClInclude Include="Discord\Thread\Discord_Work.h">
       <Filter>헤더 파일\Discord\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord_Session.h">
+      <Filter>헤더 파일\Discord\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord_Management.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

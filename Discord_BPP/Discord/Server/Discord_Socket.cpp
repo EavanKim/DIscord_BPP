@@ -70,12 +70,9 @@ namespace Discord
 		return m_sessionreturn;
 	}
 
-	void DSocket::accespt(DSocket& _createdSocket)
+	SOCKET DSocket::accespt()
 	{
-		if (INVALID_SOCKET != _createdSocket.getSocket())
-		{
-			_createdSocket.close();
-		}
+		return INVALID_SOCKET;
 	}
 
 	void DSocket::listen()

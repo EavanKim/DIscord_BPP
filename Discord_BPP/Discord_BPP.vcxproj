@@ -155,6 +155,8 @@
     <ClCompile Include="Discord\Thread\Discord_Task.cpp" />
     <ClCompile Include="Discord\Thread\Discord_Work.cpp" />
     <ClCompile Include="Discord_BPP.cpp" />
+    <ClCompile Include="Discord_Management.cpp" />
+    <ClCompile Include="Discord_Session.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -171,6 +173,8 @@
     <ClInclude Include="Discord\Server\Discord_Socket.h" />
     <ClInclude Include="Discord\Thread\Discord_Task.h" />
     <ClInclude Include="Discord\Thread\Discord_Work.h" />
+    <ClInclude Include="Discord_Management.h" />
+    <ClInclude Include="Discord_Session.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

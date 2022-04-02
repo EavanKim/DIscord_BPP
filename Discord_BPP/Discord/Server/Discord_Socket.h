@@ -13,7 +13,7 @@ namespace Discord
 		void open();
 		void close();
 
-		void accespt(DSocket& _createdSocket);
+		SOCKET accespt();
 		void listen();
 		void talk();
 		bool IsInvalid();

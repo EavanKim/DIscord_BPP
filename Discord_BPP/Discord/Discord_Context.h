@@ -6,6 +6,7 @@ namespace Discord
 	{
 		UNKNOWN
 		, SERVER
+		, SESSION
 		, WORK
 		, MAX
 	};
