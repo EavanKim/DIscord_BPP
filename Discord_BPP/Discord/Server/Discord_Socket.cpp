@@ -77,6 +77,7 @@ namespace Discord
 
 	void DSocket::listen()
 	{
+		recv(m_socket, m_data.data(), 512, 0);
 	}
 
 	void DSocket::talk()

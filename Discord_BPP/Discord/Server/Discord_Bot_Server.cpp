@@ -21,6 +21,7 @@ namespace Discord
 	{
 		//Thread 제어
 		InterlockedExchange64(&m_listenEnable, 0);
+
 		m_listen.close();
 	
 		WSACleanup();
@@ -36,9 +37,9 @@ namespace Discord
 
 			if (CONTEXT_TYPE::SERVER == typeCheck->getType())
 			{
+				//beginethreadex안에서 사용할 객체 생성
 				DBot_Server* Server = static_cast<DBot_Server*>(typeCheck);
 
-				//Thread 저장소에 복사되어 사용할 것이라 기대
 				int addrlen = 0;
 				while (Server->m_listenEnable)
 				{
@@ -59,7 +60,7 @@ namespace Discord
 		catch(...)
 		{
 			//고민지점.
-			//Session을 주도적으로 해체하는 타이밍을 listen socket기준으로 할 지, Task기준으로 할 지 통일 필요
+			//context는 thread종속적인데, 에러가 나서 Thread에 문제가 생겼을 경우 자신의 Thread가 아닌 외부제어가 필요함.
 			if (nullptr != Session)
 				delete Session;
 
@@ -81,17 +82,21 @@ namespace Discord
 			{
 				//Process를 stdcall한 Listen에서 Session이 시작되고 있음
 				DSession* CurrentSession = static_cast<DSession*>(typeCheck);
+				//댕글링이 발생하지 않도록 typeCheck는 사용하지 못하도록 하지만, _context는 예외처리용으로 남깁니다.
+				typeCheck = nullptr;
 
-
+				CurrentSession;
 
 				//처리가 끝나고 Responce를 돌려주었다면 세션 종료
+				//_context는 모두 Thread 종속적이어야 하는데 종료시점에 Context가 access exception이 발생하는 경우가 있다면
+				//잘못 만든 코드이므로 수행된 명령을 수정해야 함.
 				delete CurrentSession;
 			}
 		}
 		catch (...)
 		{
 			//고민지점.
-			//Session을 주도적으로 해체하는 타이밍을 listen socket기준으로 할 지, Task기준으로 할 지 통일 필요
+			//context는 thread종속적인데, 에러가 나서 Thread에 문제가 생겼을 경우 자신의 Thread가 아닌 외부제어가 필요함.
 			if (nullptr != _context)
 				delete _context;
 		}

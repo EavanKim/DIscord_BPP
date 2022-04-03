@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include <unordered_map>
 #include <stdint.h>
 
@@ -24,6 +25,7 @@
 #include "Thread/Discord_Task.h"
 #include "Server/Discord_Socket.h"
 #include "Discord_Session.h"
+#include "Discord_INI.h"
 #include "Server/Discord_Bot_Server.h"
 
 #endif

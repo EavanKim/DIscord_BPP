@@ -55,6 +55,12 @@
     <Filter Include="헤더 파일\Discord\Management\Command">
       <UniqueIdentifier>{a48d9510-4dac-4714-8dfc-ff6b54f86b32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Discord\Setting">
+      <UniqueIdentifier>{be59ec13-7849-4ae3-894b-1b0319ae747a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Discord\Setting">
+      <UniqueIdentifier>{3635a79c-d5c7-4769-8a18-730e24962082}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Discord_BPP.cpp">
@@ -85,6 +91,9 @@
       <Filter>소스 파일\Discord\Server</Filter>
     </ClCompile>
     <ClCompile Include="Discord_Management.cpp">
+      <Filter>소스 파일\Discord\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord_INI.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -120,7 +129,15 @@
       <Filter>헤더 파일\Discord\Server</Filter>
     </ClInclude>
     <ClInclude Include="Discord_Management.h">
+      <Filter>헤더 파일\Discord\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord_INI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="흐름.txt">
+      <Filter>리소스 파일</Filter>
+    </Text>
   </ItemGroup>
 </Project>
