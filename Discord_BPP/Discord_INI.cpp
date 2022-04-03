@@ -90,45 +90,6 @@ namespace Discord
 		if (0 == error)
 		{
 			std::wofstream stream(targetFile);
-			std::map<INI_TYPE, INI_INFO>::iterator dataIter = m_data.begin();
-			std::map<INI_TYPE, INI_INFO>::iterator dataEnd = m_data.end();
-			for (; dataIter != dataEnd; ++dataIter)
-			{
-				size_t dataCount = 0;
-				size_t dataSize = 0;
-
-				if (dataIter->second.m_isInitialized)
-				{
-					switch (dataIter->second.m_type)
-					{
-					case INI_INFO_TYPE::INT:
-						stream << dataIter->second.m_data.i;
-						break;
-					case INI_INFO_TYPE::UINT:
-						stream << dataIter->second.m_data.i;
-						break;
-					case INI_INFO_TYPE::FLOAT:
-						stream << dataIter->second.m_data.i;
-						break;
-					case INI_INFO_TYPE::DOUBLE:
-						stream << dataIter->second.m_data.i;
-						break;
-					case INI_INFO_TYPE::STRING:
-						stream << std::string((char*)dataIter->second.m_data.ptr).c_str();
-						break;
-					case INI_INFO_TYPE::WSTRING:
-						stream << std::wstring((wchar_t*)dataIter->second.m_data.ptr).c_str();
-						break;
-					default:
-						continue;
-					}
-					stream << std::endl;
-				}
-				else
-				{
-					stream << std::endl;
-				}
-			}
 
 			stream.close();
 			fclose(targetFile);
