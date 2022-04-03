@@ -2,6 +2,7 @@
 #define DISCORD_INCLUDE_HPP__
 
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <map>
 #include <unordered_map>
