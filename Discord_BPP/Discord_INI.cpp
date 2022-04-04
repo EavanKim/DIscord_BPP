@@ -1,9 +1,12 @@
 #include "pch.h"
 #include <fstream>
+#include <iostream>
+#include <string>
 
 namespace Discord
 {
 	DINI::DINI(std::wstring _path)
+		: m_filePath(_path)
 	{
 	}
 
@@ -13,19 +16,31 @@ namespace Discord
 
 	void DINI::Load()
 	{
+		std::wifstream stream(m_filePath);
 
+		if (stream.is_open())
+		{
+			std::getline(stream, m_url);
+			std::getline(stream, m_publicKey);
+			std::getline(stream, m_applicationID);
+			std::getline(stream, m_tokenBot);
+			std::getline(stream, m_tokenCredentials);
+			stream.close();
+		}
 	}
 
 	void DINI::Save()
 	{
-		FILE* targetFile = nullptr;
-		errno_t error = _wfopen_s(&targetFile, m_filePath.c_str(), L"wb+");
-		if (0 == error)
-		{
-			std::wofstream stream(targetFile);
+		std::wofstream stream(m_filePath);
 
+		if (stream.is_open())
+		{
+			stream << m_url << std::endl;
+			stream << m_publicKey << std::endl;
+			stream << m_applicationID << std::endl;
+			stream << m_tokenBot << std::endl;
+			stream << m_tokenCredentials << std::endl;
 			stream.close();
-			fclose(targetFile);
 		}
 	}
 }

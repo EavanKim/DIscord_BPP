@@ -42,12 +42,12 @@ namespace Discord
 		void Save();
 
 	private:
-		std::wstring m_filePath;
-		std::wstring m_url;
-		std::wstring m_publicKey;
-		std::wstring m_applicationID;
-		std::wstring m_tokenBot;
-		std::wstring m_tokenCredentials;
+		std::wstring m_filePath = L"";
+		std::wstring m_url = L"";
+		std::wstring m_publicKey = L"";
+		std::wstring m_applicationID = L"";
+		std::wstring m_tokenBot = L"";
+		std::wstring m_tokenCredentials = L"";
 	};
 }
 
