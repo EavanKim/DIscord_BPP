@@ -1,7 +1,4 @@
 #include "pch.h"
-#include <fstream>
-#include <iostream>
-#include <string>
 
 namespace Discord
 {

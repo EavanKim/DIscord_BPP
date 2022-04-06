@@ -158,6 +158,7 @@
     <ClCompile Include="Discord\Thread\Discord_Work.cpp" />
     <ClCompile Include="Discord_BPP.cpp" />
     <ClCompile Include="Discord_INI.cpp" />
+    <ClCompile Include="Discord_ManageCommand.cpp" />
     <ClCompile Include="Discord_Management.cpp" />
     <ClCompile Include="Discord_Session.cpp" />
     <ClCompile Include="pch.cpp">
@@ -177,6 +178,7 @@
     <ClInclude Include="Discord\Thread\Discord_Task.h" />
     <ClInclude Include="Discord\Thread\Discord_Work.h" />
     <ClInclude Include="Discord_INI.h" />
+    <ClInclude Include="Discord_ManageCommand.h" />
     <ClInclude Include="Discord_Management.h" />
     <ClInclude Include="Discord_Session.h" />
     <ClInclude Include="pch.h" />

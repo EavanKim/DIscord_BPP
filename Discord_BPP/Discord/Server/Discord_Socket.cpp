@@ -31,6 +31,11 @@ namespace Discord
 		}
 	}
 
+	void DSocket::listen()
+	{
+		bind(m_socket, (SOCKADDR*)&m_connectInfo, sizeof(m_connectInfo));
+	}
+
 	void DSocket::close()
 	{
 		if (INVALID_SOCKET != m_socket)
@@ -42,12 +47,12 @@ namespace Discord
 
 	void DSocket::setSocket(SOCKET _socket)
 	{
-
+		m_socket = _socket;
 	}
 
 	void DSocket::setInfo(SOCKADDR_IN _connectInfo)
 	{
-
+		m_connectInfo = _connectInfo;
 	}
 
 	SOCKET DSocket::getSocket()
@@ -75,14 +80,6 @@ namespace Discord
 		return INVALID_SOCKET;
 	}
 
-	void DSocket::listen()
-	{
-		recv(m_socket, m_data.data(), 512, 0);
-	}
-
-	void DSocket::talk()
-	{
-	}
 	bool DSocket::IsInvalid()
 	{
 		return false;

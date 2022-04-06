@@ -18,12 +18,12 @@ namespace Discord
 
 	void DSession::listenRequest()
 	{
-		m_socket.listen();
+
 	}
 
 	void DSession::doResponse()
 	{
-		m_socket.talk();
+
 	}
 
 	void DSession::setAcceptSocket(SOCKET _sock)

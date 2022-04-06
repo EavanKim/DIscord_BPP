@@ -12,6 +12,8 @@ namespace Discord
 		}
 
 		m_listen.open();
+		m_listen.setInfo(_endPoint);
+		m_listen.listen();
 
 		//Thread Á¦¾î
 		InterlockedExchange64(&m_listenEnable, 1);

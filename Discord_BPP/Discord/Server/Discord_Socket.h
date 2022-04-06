@@ -30,11 +30,10 @@ namespace Discord
 		virtual ~DSocket();
 
 		void open();
+		void listen();
 		void close();
 
 		SOCKET accespt();
-		void listen();
-		void talk();
 		bool IsInvalid();
 
 		void setSocket(SOCKET _socket);
