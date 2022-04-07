@@ -6,7 +6,8 @@ namespace Discord
 	{
 	}
 	DSession::DSession(SOCKET _sock)
-		: m_socket(_sock)
+		: DContext(CONTEXT_TYPE::SESSION)
+		, m_socket(_sock)
 	{
 
 	}
@@ -18,7 +19,8 @@ namespace Discord
 
 	void DSession::listenRequest()
 	{
-
+		m_socket.getPeer();
+		
 	}
 
 	void DSession::doResponse()

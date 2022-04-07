@@ -103,10 +103,15 @@ namespace Discord
 	void DManagement::stop(DManageCommand* _param)
 	{
 		DManagement* Ptr = DManagement::GetInstance();
-		delete Ptr->m_server;
+		if (nullptr != Ptr->m_server)
+		{
+			delete Ptr->m_server;
+			Ptr->m_server = nullptr;
+		}
 	}
 
 	void DManagement::showInfo(DManageCommand* _param)
 	{
+
 	}
 }

@@ -36,6 +36,10 @@ namespace Discord
 		SOCKET accespt();
 		bool IsInvalid();
 
+		void getPeer();
+		void packet_recv();
+		void packet_send(std::vector<char>& _senddata);
+
 		void setSocket(SOCKET _socket);
 		void setInfo(SOCKADDR_IN _connectInfo);
 

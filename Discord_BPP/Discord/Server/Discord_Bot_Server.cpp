@@ -14,6 +14,7 @@ namespace Discord
 		m_listen.open();
 		m_listen.setInfo(_endPoint);
 		m_listen.listen();
+		m_thread = (HANDLE)_beginthreadex(NULL, 0, DBot_Server::Listen, this, NULL, NULL);
 
 		//Thread 제어
 		InterlockedExchange64(&m_listenEnable, 1);
@@ -23,6 +24,12 @@ namespace Discord
 	{
 		//Thread 제어
 		InterlockedExchange64(&m_listenEnable, 0);
+
+		if (m_thread)
+		{
+			CloseHandle(m_thread);
+			m_thread = INVALID_HANDLE_VALUE;
+		}
 
 		m_listen.close();
 	

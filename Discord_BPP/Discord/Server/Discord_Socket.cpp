@@ -45,6 +45,57 @@ namespace Discord
 		}
 	}
 
+	SOCKET DSocket::accespt()
+	{
+		return accept(m_socket, (SOCKADDR*)&m_connectInfo, &m_addrlen);
+	}
+
+	bool DSocket::IsInvalid()
+	{
+		return INVALID_SOCKET == m_socket;
+	}
+
+	void DSocket::getPeer()
+	{
+		getpeername(m_socket, (SOCKADDR*)&m_connectInfo, &m_addrlen);
+	}
+
+	void DSocket::packet_recv()
+	{
+		char buf[513];
+		ZeroMemory(&buf, 513);
+		while (1)
+		{
+			int retval = recv(m_socket, buf, 512, 0);
+			if (SOCKET_ERROR == retval)
+			{
+				return;
+			}
+			else if (0 == retval)
+			{
+				break;
+			}
+			else
+			{
+				for(int Count = 0; retval > Count; ++Count)
+					m_data.push_back(buf[Count]);
+			}
+		}
+	}
+
+	void DSocket::packet_send(std::vector<char>& _senddata)
+	{
+		int maxCount = _senddata.size();
+		for (int seek = 0; maxCount > seek; seek += 512)
+		{
+			int retval = send(m_socket, (const char*)_senddata.data()[seek], (maxCount - seek) > 512 ? 512 : (maxCount - seek), 0);
+			if (SOCKET_ERROR == retval)
+			{
+				return;
+			}
+		}
+	}
+
 	void DSocket::setSocket(SOCKET _socket)
 	{
 		m_socket = _socket;
@@ -73,15 +124,5 @@ namespace Discord
 	int DSocket::getSessionReturn()
 	{
 		return m_sessionreturn;
-	}
-
-	SOCKET DSocket::accespt()
-	{
-		return INVALID_SOCKET;
-	}
-
-	bool DSocket::IsInvalid()
-	{
-		return false;
 	}
 }
