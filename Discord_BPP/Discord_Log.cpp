@@ -19,6 +19,7 @@ namespace Discord
 
 	void DLog::Destroy()
 	{
+		InterlockedExchange(&(*m_instance)->m_state, 0);
 		m_instance.tryDestroy();
 	}
 
@@ -42,14 +43,14 @@ namespace Discord
 				return 0;
 			}
 			typeCheck = nullptr;
-			DBOOL Done;
-			InterlockedExchange(&Done, 0);
-			while (Done)
+			DBOOL Work;
+			InterlockedExchange(&Work, 1);
+			while (Work)
 			{
-				if (InterlockedCompareExchange(&(*LogPtr)->m_barrier, 1, 0) == 0)
+				if (1 == InterlockedCompareExchange(&(*LogPtr)->m_barrier, 1, 0))
 				{
 					(*LogPtr)->m_logs.push_back(logContext->m_logString);
-					InterlockedExchange(&Done, 1);
+					InterlockedExchange(&Work, 0);
 				}
 			}
 			InterlockedExchange(&(*LogPtr)->m_barrier, 0);
@@ -68,16 +69,11 @@ namespace Discord
 		{
 			DLogContext* logContext = static_cast<DLogContext*>(typeCheck);
 			DRef_Ptr<DLog> LogPtr = DLog::GetInstance();
-			if (nullptr == LogPtr.get())
-			{
-				_endthreadex(0);
-				return 0;
-			}
 			typeCheck = nullptr;
 			while ((*LogPtr)->m_state)
 			{
 				int vectorEOF = (*LogPtr)->m_logs.size();
-				if ((0 != vectorEOF) && (0 == InterlockedCompareExchange(&(*LogPtr)->m_barrier, 1, 0)))
+				if ((0 != vectorEOF) && (1 == InterlockedCompareExchange(&(*LogPtr)->m_barrier, 1, 0)))
 				{
 					DString FullPath = (*LogPtr)->m_savePath + L'\\' + (*LogPtr)->m_saveFileName + L'.' + (*LogPtr)->m_extentions;
 					std::wofstream output(FullPath, std::ios::out | std::ios::app, 0);
@@ -131,7 +127,7 @@ namespace Discord
 			CloseHandle(m_updateThread);
 		}
 		int vectorEOF = m_logs.size();
-		if ((0 != vectorEOF) && (0 == InterlockedCompareExchange(&m_barrier, 1, 0)))
+		if ((0 != vectorEOF) && (1 == InterlockedCompareExchange(&m_barrier, 1, 0)))
 		{
 			DString FullPath = m_savePath + L'\\' + m_saveFileName + L'.' + m_extentions;
 			std::wofstream output(FullPath, std::ios::out | std::ios::app, 0);

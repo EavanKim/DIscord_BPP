@@ -94,6 +94,7 @@ namespace Discord
 		if (0 == m_ptr.read->Get_Reference_Count())
 		{
 			delete m_ptr.read;
+			m_ptr.read = nullptr;
 			return 0;
 		}
 
