@@ -2,7 +2,7 @@
 
 namespace Discord
 {
-	DINI::DINI(std::wstring _path)
+	DINI::DINI(DString _path)
 		: m_filePath(_path)
 	{
 	}

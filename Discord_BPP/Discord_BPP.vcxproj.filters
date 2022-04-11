@@ -63,16 +63,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Discord_BPP.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Discord\Discord_Context.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Discord\Discord_Exception.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Discord\Server\Discord_Bot_Server.cpp">
@@ -93,27 +84,30 @@
     <ClCompile Include="Discord_Management.cpp">
       <Filter>소스 파일\Discord\Management</Filter>
     </ClCompile>
-    <ClCompile Include="Discord_INI.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Discord_ManageCommand.cpp">
       <Filter>소스 파일\Discord\Management\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord\Discord_Context.cpp">
+      <Filter>소스 파일\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord\Discord_Exception.cpp">
+      <Filter>소스 파일\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord_INI.cpp">
+      <Filter>소스 파일\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord_Log.cpp">
+      <Filter>소스 파일\Discord</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord_BPP.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Discord_Ptr.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Discord\Discord_Context.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Discord\Discord_Defines.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Discord\Discord_Exception.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Discord\Discord_Include.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Discord\Server\Discord_Bot_Server.h">
@@ -134,11 +128,29 @@
     <ClInclude Include="Discord_Management.h">
       <Filter>헤더 파일\Discord\Management</Filter>
     </ClInclude>
-    <ClInclude Include="Discord_INI.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Discord_ManageCommand.h">
       <Filter>헤더 파일\Discord\Management\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord_Log.h">
+      <Filter>헤더 파일\Discord</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord\Discord_Context.h">
+      <Filter>헤더 파일\Discord</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord\Discord_Defines.h">
+      <Filter>헤더 파일\Discord</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord\Discord_Exception.h">
+      <Filter>헤더 파일\Discord</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord\Discord_Include.h">
+      <Filter>헤더 파일\Discord</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord_INI.h">
+      <Filter>헤더 파일\Discord</Filter>
+    </ClInclude>
+    <ClInclude Include="Discord_Ptr.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

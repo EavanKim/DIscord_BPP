@@ -38,13 +38,13 @@ namespace Discord
 		explicit DManagement();
 		~DManagement();
 
-		void split(std::vector<std::wstring>& _result, std::wstring _string, wchar_t _Seperater);
+		void split(std::vector<DString>& _result, DString _string, wchar_t _Seperater);
 		static void exit(DManageCommand* _param);
 		static void start(DManageCommand* _param);
 		static void stop(DManageCommand* _param);
 		static void showInfo(DManageCommand* _param);
 
-		std::map<std::wstring, void(*)(DManageCommand*)> m_commands = {};
+		std::map<DString, void(*)(DManageCommand*)> m_commands = {};
 		DBot_Server* m_server = nullptr;
 
 		volatile long long m_state = 0;

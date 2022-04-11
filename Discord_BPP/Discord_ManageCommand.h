@@ -7,11 +7,11 @@ namespace Discord
 	{
 	public:
 		explicit DManageCommand();
-		explicit DManageCommand(std::vector<std::wstring> _params);
+		explicit DManageCommand(std::vector<DString> _params);
 		virtual ~DManageCommand();
 
 	private:
-		std::vector<std::wstring> m_inputParam;
+		std::vector<DString> m_inputParam;
 	};
 }
 

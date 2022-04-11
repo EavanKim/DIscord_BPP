@@ -35,19 +35,19 @@ namespace Discord
 	class DINI : public DContext
 	{
 	public:
-		explicit DINI(std::wstring _path);
+		explicit DINI(DString _path);
 		virtual ~DINI();
 
 		void Load();
 		void Save();
 
 	private:
-		std::wstring m_filePath = L"";
-		std::wstring m_url = L"";
-		std::wstring m_publicKey = L"";
-		std::wstring m_applicationID = L"";
-		std::wstring m_tokenBot = L"";
-		std::wstring m_tokenCredentials = L"";
+		DString m_filePath = L"";
+		DString m_url = L"";
+		DString m_publicKey = L"";
+		DString m_applicationID = L"";
+		DString m_tokenBot = L"";
+		DString m_tokenCredentials = L"";
 	};
 }
 

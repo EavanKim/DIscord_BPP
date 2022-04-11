@@ -49,7 +49,7 @@ namespace Discord
 				//beginethreadex안에서 사용할 객체 생성
 				DBot_Server* Server = static_cast<DBot_Server*>(typeCheck);
 
-				int addrlen = 0;
+				DINT addrlen = 0;
 				while (Server->m_listenEnable)
 				{
 					Session = new DSession(Server->m_listen.accespt());
@@ -89,12 +89,15 @@ namespace Discord
 
 			if (CONTEXT_TYPE::SESSION == typeCheck->getType())
 			{
+				(*DLog::GetInstance())->printf(L"TestLog : Session");
 				//Process를 stdcall한 Listen에서 Session이 시작되고 있음
 				DSession* CurrentSession = static_cast<DSession*>(typeCheck);
 				//댕글링이 발생하지 않도록 typeCheck는 사용하지 못하도록 하지만, _context는 예외처리용으로 남깁니다.
 				typeCheck = nullptr;
 
-				CurrentSession;
+				CurrentSession->listenRequest();
+				CurrentSession->Process();
+				CurrentSession->doResponse();
 
 				//처리가 끝나고 Responce를 돌려주었다면 세션 종료
 				//_context는 모두 Thread 종속적이어야 하는데 종료시점에 Context가 access exception이 발생하는 경우가 있다면

@@ -9,6 +9,7 @@
 #include <map>
 #include <unordered_map>
 #include <stdint.h>
+#include <memory>
 
 #include <WinSock2.h>
 #include <Windows.h>
@@ -18,8 +19,10 @@
 #pragma comment (lib, "Ws2_32.lib")
 
 #include "Discord_Defines.h"
+#include "Discord_Ptr.h"
 #include "Discord_Exception.h"
 #include "Discord_Context.h"
+#include "Discord_Log.h"
 //Singleton은 자체적인 context로 취급
 //왜냐하면 Program이 실행되는 Process 종속적인 객체이기 때문
 //Context를 상속하는 객체는 별도로 실행하는 Thread에 종속적인 대상만 관리

@@ -26,9 +26,9 @@ Discord::DException::~DException()
 {
 }
 
-std::wstring Discord::DException::ParseExceptionCode(uint64_t _code)
+DString Discord::DException::ParseExceptionCode(uint64_t _code)
 {
-    std::wstring result = L"";
+    DString result = L"";
 
     switch (_code)
     {

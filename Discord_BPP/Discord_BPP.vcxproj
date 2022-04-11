@@ -118,7 +118,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_WIN64;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -158,8 +158,10 @@
     <ClCompile Include="Discord\Thread\Discord_Work.cpp" />
     <ClCompile Include="Discord_BPP.cpp" />
     <ClCompile Include="Discord_INI.cpp" />
+    <ClCompile Include="Discord_Log.cpp" />
     <ClCompile Include="Discord_ManageCommand.cpp" />
     <ClCompile Include="Discord_Management.cpp" />
+    <ClCompile Include="Discord_Ptr.cpp" />
     <ClCompile Include="Discord_Session.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -178,8 +180,10 @@
     <ClInclude Include="Discord\Thread\Discord_Task.h" />
     <ClInclude Include="Discord\Thread\Discord_Work.h" />
     <ClInclude Include="Discord_INI.h" />
+    <ClInclude Include="Discord_Log.h" />
     <ClInclude Include="Discord_ManageCommand.h" />
     <ClInclude Include="Discord_Management.h" />
+    <ClInclude Include="Discord_Ptr.h" />
     <ClInclude Include="Discord_Session.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

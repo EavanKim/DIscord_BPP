@@ -33,6 +33,7 @@ namespace Discord
 		, SERVER
 		, SESSION
 		, WORK
+		, LOG
 		, MAX
 	};
 

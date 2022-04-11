@@ -29,11 +29,19 @@ namespace Discord
 		virtual ~DSession();
 
 		void listenRequest();
+		void Process();
 		void doResponse();
+
+		void setupData(char* _ptr, int _length);
+		void setupData(std::vector<char>& _data);
+
+		void appendData(char* _ptr, int _length);
+		void appendData(std::vector<char>& _data);
 
 		void setAcceptSocket(SOCKET _sock);
 
 	private:
+		std::vector<char> m_responseData;
 		DSocket m_socket;
 	};
 }

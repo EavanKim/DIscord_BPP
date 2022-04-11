@@ -10,11 +10,10 @@ namespace Discord
 		~DBot_Server();
 
 		static UINT Listen(void* _context);
-
 		static UINT Process(void* _context);
 
 	private:
-		volatile long long m_listenEnable = 0;
+		DINT_T m_listenEnable = 0;
 		HANDLE m_thread;
 		DSocket m_listen;
 		WSADATA m_wsaData;

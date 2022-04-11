@@ -10,11 +10,11 @@ namespace Discord
 		explicit DException(uint64_t _code);
 		virtual ~DException();
 
-		std::wstring ParseExceptionCode(uint64_t _code);
+		DString ParseExceptionCode(uint64_t _code);
 
 	private:
 		uint64_t m_code;
-		std::wstring m_exceptionDescription = L"";
+		DString m_exceptionDescription = L"";
 	};
 }
 

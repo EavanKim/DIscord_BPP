@@ -25,15 +25,15 @@ namespace Discord
 	{
 		while (m_state)
 		{
-			std::wstring getCommand = L"";
+			DString getCommand = L"";
 			std::wcin >> getCommand;
 
-			std::vector<std::wstring> getSplitCommand;
+			std::vector<DString> getSplitCommand;
 			split(getSplitCommand, getCommand, L' ');
 
 			if (0 != getSplitCommand.size())
 			{
-				std::map<std::wstring, void(*)(DManageCommand*)>::const_iterator FindTarget = m_commands.find(getSplitCommand[0]);
+				std::map<DString, void(*)(DManageCommand*)>::const_iterator FindTarget = m_commands.find(getSplitCommand[0]);
 
 				if (m_commands.end() != FindTarget)
 				{
@@ -48,10 +48,10 @@ namespace Discord
 	DManagement::DManagement()
 	{
 		InterlockedExchange64(&m_state, 1);
-		m_commands.insert(std::make_pair(std::wstring(L"exit"), DManagement::exit));
-		m_commands.insert(std::make_pair(std::wstring(L"start"), DManagement::start));
-		m_commands.insert(std::make_pair(std::wstring(L"stop"), DManagement::stop));
-		m_commands.insert(std::make_pair(std::wstring(L"showinfo"), DManagement::showInfo));
+		m_commands.insert(std::make_pair(DString(L"exit"), DManagement::exit));
+		m_commands.insert(std::make_pair(DString(L"start"), DManagement::start));
+		m_commands.insert(std::make_pair(DString(L"stop"), DManagement::stop));
+		m_commands.insert(std::make_pair(DString(L"showinfo"), DManagement::showInfo));
 	}
 
 	DManagement::~DManagement()
@@ -59,14 +59,14 @@ namespace Discord
 		InterlockedExchange64(&m_state, 0);
 	}
 
-	void DManagement::split(std::vector<std::wstring>& _result, std::wstring _string, wchar_t _Seperater)
+	void DManagement::split(std::vector<DString>& _result, DString _string, DCHAR _Seperater)
 	{
 		int maxLength = _string.length();
 
-		std::wstring currentstring;
-		for (int seek = 0; maxLength > seek; ++seek)
+		DString currentstring;
+		for (DINT seek = 0; maxLength > seek; ++seek)
 		{
-			wchar_t currentword = _string[seek];
+			DCHAR currentword = _string[seek];
 			if ((_Seperater == currentword) || (seek == maxLength -1))
 			{
 				currentstring += currentword;
@@ -82,12 +82,19 @@ namespace Discord
 
 	void DManagement::exit(DManageCommand* _param)
 	{
-		delete _param;
+		DRef_Ptr<DLog> LogPtr = DLog::GetInstance();
+		(*LogPtr)->printf(L"Exit");
+		LogPtr.tryDestroy();
+		if(nullptr != _param)
+			delete _param;
 		InterlockedExchange64(&DManagement::GetInstance()->m_state, 0);
 	}
 
 	void DManagement::start(DManageCommand* _param)
 	{
+		DRef_Ptr<DLog> LogPtr = DLog::GetInstance();
+		(*LogPtr)->printf(L"Start");
+		LogPtr.tryDestroy();
 		DManagement* Ptr = DManagement::GetInstance();
 		if (nullptr == Ptr->m_server)
 		{
@@ -102,6 +109,9 @@ namespace Discord
 
 	void DManagement::stop(DManageCommand* _param)
 	{
+		DRef_Ptr<DLog> LogPtr = DLog::GetInstance();
+		(*LogPtr)->printf(L"Stop");
+		LogPtr.tryDestroy();
 		DManagement* Ptr = DManagement::GetInstance();
 		if (nullptr != Ptr->m_server)
 		{
@@ -112,6 +122,8 @@ namespace Discord
 
 	void DManagement::showInfo(DManageCommand* _param)
 	{
-
+		DRef_Ptr<DLog> LogPtr = DLog::GetInstance();
+		(*LogPtr)->printf(L"ShowInfo");
+		LogPtr.tryDestroy();
 	}
 }

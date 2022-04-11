@@ -5,7 +5,7 @@ Discord::DManageCommand::DManageCommand()
 {
 }
 
-Discord::DManageCommand::DManageCommand(std::vector<std::wstring> _params)
+Discord::DManageCommand::DManageCommand(std::vector<DString> _params)
 {
 }
 
