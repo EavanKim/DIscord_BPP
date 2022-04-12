@@ -44,7 +44,8 @@ namespace Discord
 		static void Destroy();
 
 		void printf(DString _log);
-		static UINT printf_internal(void* _context);
+
+		static VOID printf_internal(_Inout_ PTP_CALLBACK_INSTANCE _instance, _Inout_opt_ PVOID _context);
 		static UINT update(void* _context);
 
 	private:

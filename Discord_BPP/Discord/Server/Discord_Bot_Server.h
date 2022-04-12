@@ -10,7 +10,7 @@ namespace Discord
 		~DBot_Server();
 
 		static UINT Listen(void* _context);
-		static UINT Process(void* _context);
+		static VOID Process(_Inout_ PTP_CALLBACK_INSTANCE _instance, _Inout_opt_ PVOID _context);
 
 	private:
 		DINT_T m_listenEnable = 0;

@@ -25,13 +25,11 @@ namespace Discord
 
 	void DLog::printf(DString _log)
 	{
-		HANDLE logThread = (HANDLE)_beginthreadex(NULL, 0, DLog::printf_internal, new DLogContext(_log), 0, NULL);
-		if (INVALID_HANDLE_VALUE != logThread)
-			CloseHandle(logThread);
+		while(!TrySubmitThreadpoolCallback(DLog::printf_internal, new DLogContext(_log), 0)) {}
 	}
 
-	UINT DLog::printf_internal(void* _context)
-	{
+	VOID DLog::printf_internal(PTP_CALLBACK_INSTANCE _instance, PVOID _context)
+	{	
 		DContext* typeCheck = static_cast<DContext*>(_context);
 		if (CONTEXT_TYPE::LOG == typeCheck->getType())
 		{
@@ -39,27 +37,24 @@ namespace Discord
 			DRef_Ptr<DLog> LogPtr = DLog::GetInstance();
 			if (nullptr == LogPtr.get())
 			{
-				_endthreadex(0);
-				return 0;
+				return;
 			}
 			typeCheck = nullptr;
-			DBOOL Work;
-			InterlockedExchange(&Work, 1);
+			DBOOL Work = 1;
 			while (Work)
 			{
-				if (1 == InterlockedCompareExchange(&(*LogPtr)->m_barrier, 1, 0))
+				if (1 == InterlockedCompareExchange(&LogPtr.get()->m_barrier, 1, 0))
 				{
-					(*LogPtr)->m_logs.push_back(logContext->m_logString);
-					InterlockedExchange(&Work, 0);
+					LogPtr.get()->m_logs.push_back(logContext->m_logString);
+					Work = 0;
 				}
+				Sleep(10);
 			}
-			InterlockedExchange(&(*LogPtr)->m_barrier, 0);
+			InterlockedExchange(&LogPtr.get()->m_barrier, 0);
 			delete logContext;
-			LogPtr.tryDestroy();
 		}
 
-		_endthreadex(0);
-		return 0;
+		return;
 	}
 
 	UINT DLog::update(void* _context)
@@ -70,29 +65,27 @@ namespace Discord
 			DLogContext* logContext = static_cast<DLogContext*>(typeCheck);
 			DRef_Ptr<DLog> LogPtr = DLog::GetInstance();
 			typeCheck = nullptr;
-			while ((*LogPtr)->m_state)
+			DString FullPath = LogPtr.get()->m_savePath + L'\\' + LogPtr.get()->m_saveFileName + L'.' + LogPtr.get()->m_extentions;
+			
+			std::wofstream output(FullPath, std::ios::out | std::ios::app, 0);
+			if (!output.is_open())
+				throw new DException(0x0);
+			while (LogPtr.get()->m_state)
 			{
-				int vectorEOF = (*LogPtr)->m_logs.size();
-				if ((0 != vectorEOF) && (1 == InterlockedCompareExchange(&(*LogPtr)->m_barrier, 1, 0)))
+				int vectorEOF = LogPtr.get()->m_logs.size();
+				if ((0 != vectorEOF) && (1 == InterlockedCompareExchange(&LogPtr.get()->m_barrier, 1, 0)))
 				{
-					DString FullPath = (*LogPtr)->m_savePath + L'\\' + (*LogPtr)->m_saveFileName + L'.' + (*LogPtr)->m_extentions;
-					std::wofstream output(FullPath, std::ios::out | std::ios::app, 0);
-
-					if (!output.is_open())
-						throw new DException(0x0);
-
 					for (int seek = 0; vectorEOF > seek; ++seek)
 					{
-						output << (*LogPtr)->m_logs[seek] << std::endl;
+						output << LogPtr.get()->m_logs[seek] << std::endl;
 					}
 					output.close();
-					(*LogPtr)->m_logs.clear();
-					InterlockedExchange(&(*LogPtr)->m_barrier, 0);
+					LogPtr.get()->m_logs.clear();
+					InterlockedExchange(&LogPtr.get()->m_barrier, 0);
 				}
 				Sleep(10);
 			}
 			delete logContext;
-			LogPtr.tryDestroy();
 		}
 
 		_endthreadex(0);

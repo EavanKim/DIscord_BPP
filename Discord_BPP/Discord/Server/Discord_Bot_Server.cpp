@@ -55,14 +55,7 @@ namespace Discord
 					Session = new DSession(Server->m_listen.accespt());
 
 					//Session은 새로 생성되는 Thread가 Owner임.
-					hThread = (HANDLE)_beginthreadex(NULL, 0, DBot_Server::Process, (void*)Session, NULL, NULL);
-					if (INVALID_HANDLE_VALUE == hThread)
-					{
-						if (nullptr != Session)
-							delete Session;
-					}
-					else
-						CloseHandle(hThread);
+					while (!TrySubmitThreadpoolCallback(DBot_Server::Process, Session, 0)) {}
 				}
 			}
 		}
@@ -81,7 +74,7 @@ namespace Discord
 		return 0;
 	}
 
-	UINT DBot_Server::Process(void* _context)
+	VOID DBot_Server::Process(PTP_CALLBACK_INSTANCE _instance, PVOID _context)
 	{
 		try
 		{
@@ -113,7 +106,6 @@ namespace Discord
 				delete _context;
 		}
 
-		_endthreadex(0);
-		return 0;
+		return;
 	}
 }
