@@ -77,6 +77,10 @@ namespace Discord
 				{
 					DString FullPath = (*LogPtr)->m_savePath + L'\\' + (*LogPtr)->m_saveFileName + L'.' + (*LogPtr)->m_extentions;
 					std::wofstream output(FullPath, std::ios::out | std::ios::app, 0);
+
+					if (!output.is_open())
+						throw new DException(0x0);
+
 					for (int seek = 0; vectorEOF > seek; ++seek)
 					{
 						output << (*LogPtr)->m_logs[seek] << std::endl;
@@ -105,6 +109,7 @@ namespace Discord
 			InterlockedExchange(&m_state, 1);
 			m_updateThread = (HANDLE)_beginthreadex(NULL, 0, DLog::update, new DLogContext(L""), 0, NULL);
 		}
+		m_logs.clear();
 	}
 
 	DLog::DLog(DString _path, DString _fileName, DString _extention)
@@ -117,6 +122,7 @@ namespace Discord
 			InterlockedExchange(&m_state, 1);
 			m_updateThread = (HANDLE)_beginthreadex(NULL, 0, DLog::update, new DLogContext(L""), 0, NULL);
 		}
+		m_logs.clear();
 	}
 
 	DLog::~DLog()
